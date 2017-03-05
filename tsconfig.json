@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "outDir": "./build",
+    "declaration": true
+  },
+  "files": [
+    "./src/pvec.ts"
+  ]
+}

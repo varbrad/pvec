@@ -2,16 +2,17 @@
   "name": "pvec",
   "version": "0.0.1",
   "description": "JavaScript port of the Processing PVector class.",
-  "main": "build/pvec.cjs.js",
-  "module": "build/pvec.esm.js",
+  "main": "./build/pvec.common.js",
+  "module": "./build/pvec.js",
+  "types": "./build/pvec.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/varbrad/pvec.git"
   },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "rollup ./src/main.js -o ./build/pvec.esm.js --format es",
-    "build:cjs": "rollup ./src/main.js -o ./build/pvec.cjs.js --format cjs",
+    "build": "npm run build:ts && npm run build:cjs",
+    "build:ts": "tsc",
+    "build:cjs": "rollup ./build/pvec.js -o ./build/pvec.common.js --format cjs",
     "lint": "standard --fix"
   },
   "keywords": [
@@ -29,7 +30,8 @@
   "homepage": "https://github.com/varbrad/pvec#readme",
   "devDependencies": {
     "rollup": "^0.41.4",
-    "standard": "^9.0.0"
+    "standard": "^9.0.0",
+    "typescript": "^2.2.1"
   },
   "standard": {
     "ignore": [
