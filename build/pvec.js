@@ -9,9 +9,14 @@ var PVec = (function () {
         return v.copy();
     };
     PVec.prototype.set = function (x, y, z) {
-        this.x = x || this.x;
-        this.y = y || this.y;
-        this.z = z || this.z;
+        if (typeof x === 'object') {
+            this.set(x.x, x.y, x.z);
+        }
+        else {
+            this.x = x || this.x || 0;
+            this.y = y || this.y || 0;
+            this.z = z || this.z || 0;
+        }
     };
     return PVec;
 }());

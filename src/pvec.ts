@@ -14,11 +14,17 @@ class PVec {
   static copy (v:PVec):PVec {
     return v.copy()
   }
-
-  set (x:number, y?:number, z?:number) {
-    this.x = x || this.x
-    this.y = y || this.y
-    this.z = z || this.z
+  
+  set (x:PVec):void
+  set (x:number, y:number, z:number):void
+  set (x:PVec|number, y?:number, z?:number):void {
+    if (typeof x === 'object') {
+      this.set(x.x, x.y, x.z)
+    } else {
+      this.x = x || this.x || 0
+      this.y = y || this.y || 0
+      this.z = z || this.z || 0
+    }
   }
 }
 

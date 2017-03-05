@@ -5,6 +5,7 @@ declare class PVec {
     constructor(x?: number, y?: number, z?: number);
     copy(): PVec;
     static copy(v: PVec): PVec;
-    set(x: number, y?: number, z?: number): void;
+    set(x: PVec): void;
+    set(x: number, y: number, z: number): void;
 }
 export default PVec;
