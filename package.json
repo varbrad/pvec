@@ -14,7 +14,7 @@
     "build:ts": "tsc",
     "build:cjs": "rollup ./build/pvec.js -o ./build/pvec.common.js --format cjs",
     "lint": "standard --fix",
-    "test": "mocha"
+    "test": "npm run lint && mocha"
   },
   "keywords": [
     "vector",
