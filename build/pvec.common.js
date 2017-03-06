@@ -121,7 +121,7 @@ var PVec = (function () {
     };
     PVec.prototype.dot = function (x, y, z) {
         if (typeof x === 'object') {
-            return this.x * x.x + this.y * x.y + this.z + x.z;
+            return this.x * x.x + this.y * x.y + this.z * x.z;
         }
         else {
             return this.x * x + this.y * y + this.z * z;

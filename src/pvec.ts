@@ -247,7 +247,7 @@ class PVec {
   dot (x:number, y:number, z:number):number
   dot (x:PVec|number, y?:number, z?:number):number {
     if (typeof x === 'object') {
-      return this.x * x.x + this.y * x.y + this.z + x.z
+      return this.x * x.x + this.y * x.y + this.z * x.z
     } else {
       return this.x * x + this.y * y + this.z * z
     }
