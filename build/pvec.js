@@ -13,9 +13,9 @@ var PVec = (function () {
             this.set(x.x, x.y, x.z);
         }
         else {
-            this.x = x || this.x || 0;
-            this.y = y || this.y || 0;
-            this.z = z || this.z || 0;
+            this.x = (x !== undefined) ? x : this.x;
+            this.y = (y !== undefined) ? y : this.y;
+            this.z = (z !== undefined) ? z : this.z;
         }
     };
     return PVec;
