@@ -65,7 +65,18 @@ class PVec {
     return this
   }
 
+  /**
+   * Add two vectors and return the result as a new vector.
+   * @param a A vector.
+   * @param b A vector.
+   */
   static add (a:PVec, b:PVec):PVec
+  /**
+   * Add two vectors and set target to the resulting vector.
+   * @param a A vector.
+   * @param b A vector.
+   * @param target A vector to be set.
+   */
   static add (a:PVec, b:PVec, target:PVec):PVec
   static add (a:PVec, b:PVec, target?:PVec):PVec {
     if (target !== undefined) {
@@ -92,7 +103,16 @@ class PVec {
     return v.copy()
   }
 
+  /**
+   * Returns a cross-product vector from two vectors.
+   * @param v A vector.
+   */
   cross (v:PVec):PVec
+  /**
+   * Sets a given target vector as a cross-product vector from two vectors.
+   * @param v A vector.
+   * @param target A vector be set as the resulting cross-product vector.
+   */
   cross (v:PVec, target:PVec):PVec
   cross (v:PVec, target?:PVec):PVec {
     let x = this.y * v.z - v.y * this.z
@@ -106,7 +126,18 @@ class PVec {
     return target
   }
 
+  /**
+   * Returns a cross-product vector from two vectors.
+   * @param a A vector.
+   * @param b A Vector.
+   */
   static cross (a:PVec, b:PVec):PVec
+  /**
+   * Sets a given target vector as a cross-product vector from two vectors.
+   * @param a A vector.
+   * @param b A vector.
+   * @param target A vector be set as the resulting cross-product vector.
+   */
   static cross (a:PVec, b:PVec, target:PVec):PVec
   static cross (a:PVec, b:PVec, target?:PVec):PVec {
     if (target !== undefined) {
@@ -117,14 +148,28 @@ class PVec {
     return target
   }
 
+  /**
+   * Returns the distance between two vectors.
+   * @param v A vector.
+   */
   dist (v:PVec):number {
     return Math.sqrt(this.distSq(v))
   }
 
+  /**
+   * Returns the distance between two vectors.
+   * @param a A vector.
+   * @param b A vector.
+   */
   static dist (a:PVec, b:PVec):number {
     return a.dist(b)
   }
 
+  /**
+   * Returns the distance^2 between two vectors. Avoids a Math.sqrt
+   * call if absolute distance not required.
+   * @param v A vector.
+   */
   distSq (v:PVec):number {
     let dx = this.x - v.x
     let dy = this.y - v.y
@@ -132,11 +177,25 @@ class PVec {
     return Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2)
   }
 
+  /**
+   * Returns the distance^2 between two vectors. Avoids a Math.sqrt
+   * call if absolute distance not required.
+   * @param a A vector.
+   * @param b A vector.
+   */
   static distSq (a:PVec, b:PVec):number {
     return a.distSq(b)
   }
 
+  /**
+   * Divides this vector by a given vector.
+   * @param v A vector.
+   */
   div (v:PVec):PVec
+  /**
+   * Divides this vector by a given scalar.
+   * @param n A scalar.
+   */
   div (n:number):PVec
   div (a:PVec|number):PVec {
     if (typeof a === 'object') {
@@ -151,7 +210,18 @@ class PVec {
     return this
   }
 
+  /**
+   * Returns a vector of the division between a given vector by a given scalar.
+   * @param v A vector.
+   * @param n A scalar.
+   */
   static div (v:PVec, n:number):PVec
+  /**
+   * Sets a given target vector as a the division between a given vector by a given scalar.
+   * @param v A vector.
+   * @param n A scalar.
+   * @param target A vector be set as the resulting division vector.
+   */
   static div (v:PVec, n:number, target:PVec):PVec
   static div (v:PVec, n:number, target?:PVec):PVec {
     if (target !== undefined) {
@@ -163,7 +233,17 @@ class PVec {
     return target
   }
 
+  /**
+   * Returns the dot-product between this vector and a given vector.
+   * @param v A vector.
+   */
   dot (v:PVec):number
+  /**
+   * Returns the dot-product between this vector and three scalars.
+   * @param x A scalar.
+   * @param y A scalar.
+   * @param z A scalar.
+   */
   dot (x:number, y:number, z:number):number
   dot (x:PVec|number, y?:number, z?:number):number {
     if (typeof x === 'object') {
@@ -173,6 +253,11 @@ class PVec {
     }
   }
 
+  /**
+   * Returns the dot-product between two given vectors.
+   * @param a A vector.
+   * @param b A vector.
+   */
   static dot (a:PVec, b:PVec):number {
     return a.dot(b)
   }
@@ -185,17 +270,18 @@ class PVec {
   /**
    * Sets an existing vector to a unit vector with a given angle (in radians).
    * @param angle The angle to set the vector to (in radians).
-   * @param v A vector to modify.
+   * @param target A vector be set as the resulting angled vector.
    */
-  static fromAngle(angle:number, v?:PVec):PVec {
+  static fromAngle(angle:number, target:PVec):PVec
+  static fromAngle(angle:number, target?:PVec):PVec {
     let x:number = Math.cos(angle)
     let y:number = Math.sin(angle)
-    if (v !== undefined) {
-      v.set(x, y, 0)
+    if (target !== undefined) {
+      target.set(x, y, 0)
     } else {
-      v = new PVec(x, y, 0)
+      target = new PVec(x, y, 0)
     }
-    return v
+    return target
   }
 
   /**
@@ -214,7 +300,15 @@ class PVec {
     return Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2)
   }
 
+  /**
+   * Multiplies this vector by a given vector.
+   * @param v A vector.
+   */
   mult (v:PVec):PVec
+  /**
+   * Multiplies this vector by a given scalar.
+   * @param n A scalar.
+   */
   mult (n:number):PVec
   mult (a:PVec|number):PVec {
     if (typeof a === 'object') {
@@ -229,7 +323,18 @@ class PVec {
     return this
   }
 
+  /**
+   * Returns a vector of the multiplication between a given vector and given scalar.
+   * @param v A vector.
+   * @param n A scalar.
+   */
   static mult (v:PVec, n:number):PVec
+  /**
+   * 
+   * @param v A vector.
+   * @param n A scalar.
+   * @param target A vector be set as the resulting multiplication vector.
+   */
   static mult (v:PVec, n:number, target:PVec):PVec
   static mult (v:PVec, n:number, target?:PVec):PVec {
     if (target !== undefined) {
@@ -241,7 +346,14 @@ class PVec {
     return target
   }
 
+  /**
+   * Normalize this vector into a unit vector (Magnitude of 1).
+   */
   normalize ():PVec
+  /**
+   * Returns a normalized version of this vector.
+   * @param target A vector be set as the resulting normalized unit vector.
+   */
   normalize (target:PVec):PVec
   normalize (target?:PVec):PVec {
     let m = this.mag()
@@ -329,7 +441,18 @@ class PVec {
     return this
   }
 
+  /**
+   * Return a vector of the resulting subtraction between two vectors (a-b).
+   * @param a A vector.
+   * @param b A vector.
+   */
   static sub (a:PVec, b:PVec):PVec
+  /**
+   * Set a vector to the resulting subtraction between two vectors (a-b).
+   * @param a A vector.
+   * @param b A vector.
+   * @param target A vector to set as the resulting subtraction vector.
+   */
   static sub (a:PVec, b:PVec, target:PVec):PVec
   static sub (a:PVec, b:PVec, target?:PVec):PVec {
     if (target !== undefined) {
@@ -341,5 +464,7 @@ class PVec {
     return target
   }
 }
+
+
 
 export default PVec

@@ -61,18 +61,38 @@ var PVec = (function () {
         }
         return target;
     };
+    /**
+     * Returns the distance between two vectors.
+     * @param v A vector.
+     */
     PVec.prototype.dist = function (v) {
         return Math.sqrt(this.distSq(v));
     };
+    /**
+     * Returns the distance between two vectors.
+     * @param a A vector.
+     * @param b A vector.
+     */
     PVec.dist = function (a, b) {
         return a.dist(b);
     };
+    /**
+     * Returns the distance^2 between two vectors. Avoids a Math.sqrt
+     * call if absolute distance not required.
+     * @param v A vector.
+     */
     PVec.prototype.distSq = function (v) {
         var dx = this.x - v.x;
         var dy = this.y - v.y;
         var dz = this.z - v.z;
         return Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2);
     };
+    /**
+     * Returns the distance^2 between two vectors. Avoids a Math.sqrt
+     * call if absolute distance not required.
+     * @param a A vector.
+     * @param b A vector.
+     */
     PVec.distSq = function (a, b) {
         return a.distSq(b);
     };
@@ -107,24 +127,24 @@ var PVec = (function () {
             return this.x * x + this.y * y + this.z * z;
         }
     };
+    /**
+     * Returns the dot-product between two given vectors.
+     * @param a A vector.
+     * @param b A vector.
+     */
     PVec.dot = function (a, b) {
         return a.dot(b);
     };
-    /**
-     * Sets an existing vector to a unit vector with a given angle (in radians).
-     * @param angle The angle to set the vector to (in radians).
-     * @param v A vector to modify.
-     */
-    PVec.fromAngle = function (angle, v) {
+    PVec.fromAngle = function (angle, target) {
         var x = Math.cos(angle);
         var y = Math.sin(angle);
-        if (v !== undefined) {
-            v.set(x, y, 0);
+        if (target !== undefined) {
+            target.set(x, y, 0);
         }
         else {
-            v = new PVec(x, y, 0);
+            target = new PVec(x, y, 0);
         }
-        return v;
+        return target;
     };
     /**
      * Calculates the magnitude (length) of the vector and returns the result
