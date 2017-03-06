@@ -40,6 +40,76 @@ var PVec = (function () {
     PVec.copy = function (v) {
         return v.copy();
     };
+    PVec.prototype.cross = function (v, target) {
+        var x = this.y * v.z - v.y * this.z;
+        var y = this.z * v.x - v.z * this.x;
+        var z = this.x * v.y - v.x * this.y;
+        if (target !== undefined) {
+            target.set(x, y, z);
+        }
+        else {
+            target = new PVec(x, y, z);
+        }
+        return target;
+    };
+    PVec.cross = function (a, b, target) {
+        if (target !== undefined) {
+            a.cross(b, target);
+        }
+        else {
+            target = a.cross(b);
+        }
+        return target;
+    };
+    PVec.prototype.dist = function (v) {
+        return Math.sqrt(this.distSq(v));
+    };
+    PVec.dist = function (a, b) {
+        return a.dist(b);
+    };
+    PVec.prototype.distSq = function (v) {
+        var dx = this.x - v.x;
+        var dy = this.y - v.y;
+        var dz = this.z - v.z;
+        return Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2);
+    };
+    PVec.distSq = function (a, b) {
+        return a.distSq(b);
+    };
+    PVec.prototype.div = function (a) {
+        if (typeof a === 'object') {
+            this.x /= a.x;
+            this.y /= a.y;
+            this.z /= a.z;
+        }
+        else {
+            this.x /= a;
+            this.y /= a;
+            this.z /= a;
+        }
+        return this;
+    };
+    PVec.div = function (v, n, target) {
+        if (target !== undefined) {
+            target.set(v);
+        }
+        else {
+            target = v.copy();
+        }
+        target.div(n);
+        return target;
+    };
+    PVec.prototype.dot = function (x, y, z) {
+        if (typeof x === 'object') {
+            return this.x * x.x + this.y * x.y + this.z + x.z;
+        }
+        else {
+            return this.x * x + this.y * y + this.z * z;
+        }
+    };
+    PVec.dot = function (a, b) {
+        return a.dot(b);
+    };
     /**
      * Sets an existing vector to a unit vector with a given angle (in radians).
      * @param angle The angle to set the vector to (in radians).
@@ -63,8 +133,53 @@ var PVec = (function () {
     PVec.prototype.mag = function () {
         return Math.sqrt(this.magSq());
     };
+    /**
+     * Calculates the square of the magnitude (length^2). Avoids a Math.sqrt call
+     * if absolute magnitude value not needed.
+     */
     PVec.prototype.magSq = function () {
         return Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2);
+    };
+    PVec.prototype.mult = function (a) {
+        if (typeof a === 'object') {
+            this.x *= a.x;
+            this.y *= a.y;
+            this.z *= a.z;
+        }
+        else {
+            this.x *= a;
+            this.y *= a;
+            this.z *= a;
+        }
+        return this;
+    };
+    PVec.mult = function (v, n, target) {
+        if (target !== undefined) {
+            target.set(v);
+        }
+        else {
+            target = v.copy();
+        }
+        target.mult(n);
+        return target;
+    };
+    PVec.prototype.normalize = function (target) {
+        var m = this.mag();
+        if (target !== undefined) {
+            if (m > 0) {
+                target.set(this.x / m, this.y / m, this.z / m);
+            }
+            else {
+                target.set(this);
+            }
+            return target;
+        }
+        else {
+            if (m !== 0 && m !== 1) {
+                this.div(m);
+            }
+            return this;
+        }
     };
     PVec.prototype.set = function (x, y, z) {
         if (typeof x === 'object') {
@@ -75,6 +190,29 @@ var PVec = (function () {
             this.y = (y !== undefined) ? y : this.y;
             this.z = (z !== undefined) ? z : this.z;
         }
+    };
+    PVec.prototype.sub = function (x, y, z) {
+        if (typeof x === 'object') {
+            this.x -= x.x;
+            this.y -= x.y;
+            this.z -= x.z;
+        }
+        else {
+            this.x -= x || 0;
+            this.y -= y || 0;
+            this.z -= z || 0;
+        }
+        return this;
+    };
+    PVec.sub = function (a, b, target) {
+        if (target !== undefined) {
+            target.set(a);
+        }
+        else {
+            target = a.copy();
+        }
+        target.sub(b);
+        return target;
     };
     return PVec;
 }());
