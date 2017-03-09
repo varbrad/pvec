@@ -1,5 +1,5 @@
 /* global describe, it, beforeEach */
-const assert = require('assert')
+const assert = require('chai').assert
 const PVec = require('../build/pvec.common.js')
 
 describe('Set', function () {

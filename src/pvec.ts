@@ -284,6 +284,24 @@ class PVec {
     return target
   }
 
+  heading ():number {
+    return Math.atan2(this.y, this.x)
+  }
+
+  lerp (v:PVec, t:number):PVec {
+    let dv = PVec.sub(v, this)
+    dv.mult(t)
+    this.add(dv)
+    return this
+  }
+
+  limit (max:number):PVec {
+    if (this.magSq() > max * max) {
+      this.setMag(max)
+    }
+    return this
+  }
+
   /**
    * Calculates the magnitude (length) of the vector and returns the result
    * as a number.
@@ -371,6 +389,13 @@ class PVec {
       return this
     }
   }
+
+  rotate (theta:number):PVec {
+    let t = this.x
+    this.x = this.x * Math.cos(theta) - this.y * Math.sin(theta)
+    this.y = t * Math.sin(theta) - this.y * Math.cos(theta)
+    return this
+  }
   
   /**
    * Set the components of the vector.
@@ -402,6 +427,20 @@ class PVec {
       this.x = (x !== undefined) ? x : this.x
       this.y = (y !== undefined) ? y : this.y
       this.z = (z !== undefined) ? z : this.z
+    }
+  }
+
+  setMag (len:number):PVec
+  setMag (target:PVec, len:number):PVec
+  setMag (a:number|PVec, b?:number):PVec {
+    if (typeof a === 'object') {
+      a = this.normalize(a)
+      a.mult(b)
+      return a
+    } else {
+      this.normalize()
+      this.mult(a)
+      return this
     }
   }
 

@@ -144,6 +144,21 @@ var PVec = (function () {
         }
         return target;
     };
+    PVec.prototype.heading = function () {
+        return Math.atan2(this.y, this.x);
+    };
+    PVec.prototype.lerp = function (v, t) {
+        var dv = PVec.sub(v, this);
+        dv.mult(t);
+        this.add(dv);
+        return this;
+    };
+    PVec.prototype.limit = function (max) {
+        if (this.magSq() > max * max) {
+            this.setMag(max);
+        }
+        return this;
+    };
     /**
      * Calculates the magnitude (length) of the vector and returns the result
      * as a number.
@@ -199,6 +214,12 @@ var PVec = (function () {
             return this;
         }
     };
+    PVec.prototype.rotate = function (theta) {
+        var t = this.x;
+        this.x = this.x * Math.cos(theta) - this.y * Math.sin(theta);
+        this.y = t * Math.sin(theta) - this.y * Math.cos(theta);
+        return this;
+    };
     PVec.prototype.set = function (x, y, z) {
         if (typeof x === 'object') {
             this.set(x.x, x.y, x.z);
@@ -207,6 +228,18 @@ var PVec = (function () {
             this.x = (x !== undefined) ? x : this.x;
             this.y = (y !== undefined) ? y : this.y;
             this.z = (z !== undefined) ? z : this.z;
+        }
+    };
+    PVec.prototype.setMag = function (a, b) {
+        if (typeof a === 'object') {
+            a = this.normalize(a);
+            a.mult(b);
+            return a;
+        }
+        else {
+            this.normalize();
+            this.mult(a);
+            return this;
         }
     };
     PVec.prototype.sub = function (x, y, z) {

@@ -169,6 +169,9 @@ declare class PVec {
      * @param target A vector be set as the resulting angled vector.
      */
     static fromAngle(angle: number, target: PVec): PVec;
+    heading(): number;
+    lerp(v: PVec, t: number): PVec;
+    limit(max: number): PVec;
     /**
      * Calculates the magnitude (length) of the vector and returns the result
      * as a number.
@@ -211,6 +214,7 @@ declare class PVec {
      * @param target A vector be set as the resulting normalized unit vector.
      */
     normalize(target: PVec): PVec;
+    rotate(theta: number): PVec;
     /**
      * Set the components of the vector.
      * @param v The vector to set this vector to.
@@ -234,6 +238,8 @@ declare class PVec {
      * @param z The z value of the vector.
      */
     set(x: number, y: number, z: number): void;
+    setMag(len: number): PVec;
+    setMag(target: PVec, len: number): PVec;
     /**
      * Subtracts the vector by a given vector.
      * @param v The subtracting vector.
