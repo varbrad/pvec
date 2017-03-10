@@ -1,6 +1,6 @@
 {
   "name": "pvec",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JavaScript port of the Processing PVector class.",
   "main": "./build/pvec.umd.js",
   "types": "./build/pvec.d.ts",
