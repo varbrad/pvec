@@ -171,6 +171,9 @@ declare class PVec {
     static fromAngle(angle: number, target: PVec): PVec;
     heading(): number;
     lerp(v: PVec, t: number): PVec;
+    lerp(x: number, t: number): PVec;
+    lerp(x: number, y: number, t: number): PVec;
+    lerp(x: number, y: number, z: number, t: number): PVec;
     limit(max: number): PVec;
     /**
      * Calculates the magnitude (length) of the vector and returns the result

@@ -2,7 +2,7 @@
 const assert = require('chai').assert
 const PVec = require('../build/pvec.common.js')
 
-describe('FromAngle', function () {
+describe('fromAngle', function () {
   let p
 
   it('Right-facing vector from 0 angle', function () {

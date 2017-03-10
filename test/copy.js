@@ -2,7 +2,7 @@
 const assert = require('chai').assert
 const PVec = require('../build/pvec.common.js')
 
-describe('Copy', function () {
+describe('copy', function () {
   let p, p2
 
   beforeEach(function () {

@@ -149,11 +149,32 @@ var PVec = (function () {
     PVec.prototype.heading = function () {
         return Math.atan2(this.y, this.x);
     };
-    PVec.prototype.lerp = function (v, t) {
-        var dv = PVec.sub(v, this);
-        dv.mult(t);
-        this.add(dv);
-        return this;
+    PVec.prototype.lerp = function (a, b, c, d) {
+        if (typeof a === 'object') {
+            var dv = PVec.sub(a, this);
+            dv.mult(b);
+            this.add(dv);
+            return this;
+        }
+        else {
+            var v = void 0, t = void 0;
+            if (d !== undefined) {
+                v = new PVec(a, b, c);
+                t = d;
+            }
+            else if (c !== undefined) {
+                v = new PVec(a, b, this.z);
+                t = c;
+            }
+            else if (b !== undefined) {
+                v = new PVec(a, this.y, this.z);
+                t = b;
+            }
+            var dv = PVec.sub(v, this);
+            dv.mult(t);
+            this.add(dv);
+            return this;
+        }
     };
     PVec.prototype.limit = function (max) {
         if (this.magSq() > max * max) {

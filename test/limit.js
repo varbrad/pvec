@@ -2,7 +2,7 @@
 const assert = require('chai').assert
 const PVec = require('../build/pvec.common.js')
 
-describe('Limit', function () {
+describe('limit', function () {
   let p
 
   it('Integer result', function () {

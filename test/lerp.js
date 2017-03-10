@@ -37,4 +37,34 @@ describe('lerp', function () {
     assert.approximately(p.y, 10, 0.01)
     assert.approximately(p.z, 10, 0.01)
   })
+
+  it('Individual params (x)', function () {
+    p = new PVec(4, 0, 0)
+
+    p.lerp(8, 0.5)
+
+    assert.approximately(p.x, 6, 0.01)
+    assert.approximately(p.y, 0, 0.01)
+    assert.approximately(p.z, 0, 0.01)
+  })
+
+  it('Individual params (x, y)', function () {
+    p = new PVec(-2, 15.5, 0)
+
+    p.lerp(2, 31, 0.5)
+
+    assert.approximately(p.x, 0, 0.01)
+    assert.approximately(p.y, 23.25, 0.01)
+    assert.approximately(p.z, 0, 0.01)
+  })
+
+  it('Individual params (x, y, z)', function () {
+    p = new PVec(18.553, 0.4, 14.2)
+
+    p.lerp(85, 44, -3.48, 0.85)
+
+    assert.approximately(p.x, 75.033, 0.01)
+    assert.approximately(p.y, 37.46, 0.01)
+    assert.approximately(p.z, -0.828, 0.01)
+  })
 })

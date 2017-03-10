@@ -2,7 +2,7 @@
 const assert = require('chai').assert
 const PVec = require('../build/pvec.common.js')
 
-describe('Div', function () {
+describe('div', function () {
   let p, p2
 
   describe('Instance', function () {
