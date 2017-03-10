@@ -230,6 +230,11 @@ declare class PVec {
      */
     set(v: PVec): void;
     /**
+     * Set the components of the vector from a given array.
+     * @param array The array to obtain the values from.
+     */
+    set(array: number[]): void;
+    /**
      * Set the x component of the vector.
      * @param x The x value of the vector.
      */

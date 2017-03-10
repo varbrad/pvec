@@ -459,6 +459,11 @@ class PVec {
    */
   set(v: PVec): void
   /**
+   * Set the components of the vector from a given array.
+   * @param array The array to obtain the values from.
+   */
+  set(array: number[]): void
+  /**
    * Set the x component of the vector.
    * @param x The x value of the vector.
    */
@@ -476,9 +481,13 @@ class PVec {
    * @param z The z value of the vector. 
    */
   set(x: number, y: number, z: number): void
-  set(x: PVec | number, y?: number, z?: number): void {
+  set(x: PVec | number[] | number, y?: number, z?: number): void {
     if (typeof x === 'object') {
-      this.set(x.x, x.y, x.z)
+      if (x instanceof Array) {
+        this.set(x[0] || 0, x[1] || 0, x[2] || 0)
+      } else {
+        this.set(x.x, x.y, x.z)
+      }
     } else {
       this.x = (x !== undefined) ? x : this.x
       this.y = (y !== undefined) ? y : this.y

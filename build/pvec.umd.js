@@ -275,7 +275,12 @@ var PVec = (function () {
     };
     PVec.prototype.set = function (x, y, z) {
         if (typeof x === 'object') {
-            this.set(x.x, x.y, x.z);
+            if (x instanceof Array) {
+                this.set(x[0] || 0, x[1] || 0, x[2] || 0);
+            }
+            else {
+                this.set(x.x, x.y, x.z);
+            }
         }
         else {
             this.x = (x !== undefined) ? x : this.x;

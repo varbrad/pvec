@@ -30,5 +30,20 @@ describe('set', function () {
       assert.equal(p.y, 19)
       assert.equal(p.z, 0)
     })
+
+    it('Set values from array', function () {
+      p.set([4, 6, 8])
+      assert.equal(p.x, 4)
+      assert.equal(p.y, 6)
+      assert.equal(p.z, 8)
+    })
+
+    it('Ensure empty array values are zero', function () {
+      p.set(41, 18, 29)
+      p.set([3, 0, 0])
+      assert.equal(p.x, 3)
+      assert.equal(p.y, 0)
+      assert.equal(p.z, 0)
+    })
   })
 })
