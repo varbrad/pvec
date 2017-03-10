@@ -10,7 +10,7 @@ JavaScript port of the Processing PVector class.
 * Easy to use.
 * No dependencies.
 * Built-in [TypeScript](https://github.com/Microsoft/TypeScript) declaration typings.
-* CommonJS & ES Module formats supported.
+* UMD format for usage via either CommonJS or ESM.
 
 # Usage
 First add PVec as a dependency of your project.
