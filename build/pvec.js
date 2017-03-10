@@ -243,6 +243,24 @@ var PVec = (function () {
             return this;
         }
     };
+    PVec.random2D = function (v) {
+        return PVec.fromAngle(Math.random() * Math.PI * 2, v);
+    };
+    PVec.random3D = function (v) {
+        // Using equal-area projection to map from rectangular -> spherical coords
+        var theta = Math.random() * Math.PI * 2;
+        var z = Math.random() * 2 - 1;
+        var sZ = Math.sqrt(1 - z * z);
+        var y = sZ * Math.sin(theta);
+        var x = sZ * Math.cos(theta);
+        if (v !== undefined) {
+            v.set(x, y, z);
+        }
+        else {
+            v = new PVec(x, y, z);
+        }
+        return v;
+    };
     PVec.prototype.rotate = function (theta) {
         var t = this.x;
         this.x = this.x * Math.cos(theta) - this.y * Math.sin(theta);

@@ -3,11 +3,10 @@ const assert = require('chai').assert
 const PVec = require('../build/pvec.umd.js')
 
 describe('random2D', function () {
-  let a, b
+  let a
 
-  it('Maximum angle', function () {
-    a = new PVec(10, 0)
-    b = new PVec(0, 0)
-    assert.equal(a.y, b.y)
+  it('Ensure unit vector', function () {
+    a = PVec.random2D()
+    assert.approximately(a.mag(), 1, 0.01)
   })
 })

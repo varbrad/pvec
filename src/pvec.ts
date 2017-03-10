@@ -423,6 +423,29 @@ class PVec {
     }
   }
 
+  static random2D():PVec
+  static random2D(v:PVec):PVec
+  static random2D(v?:PVec):PVec {
+    return PVec.fromAngle(Math.random() * Math.PI * 2, v)
+  }
+
+  static random3D():PVec
+  static random3D(v:PVec):PVec
+  static random3D(v?:PVec):PVec {
+    // Using equal-area projection to map from rectangular -> spherical coords
+    let theta = Math.random() * Math.PI * 2
+    let z = Math.random() * 2 - 1
+    let sZ = Math.sqrt(1 - z * z)
+    let y = sZ * Math.sin(theta)
+    let x = sZ * Math.cos(theta)
+    if (v !== undefined) {
+      v.set(x, y, z)
+    } else {
+      v = new PVec(x, y, z)
+    }
+    return v
+  }
+
   rotate(theta: number): PVec {
     let t = this.x
     this.x = this.x * Math.cos(theta) - this.y * Math.sin(theta)

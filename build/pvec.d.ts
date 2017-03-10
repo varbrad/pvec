@@ -219,6 +219,10 @@ declare class PVec {
      * @param target A vector be set as the resulting normalized unit vector.
      */
     normalize(target: PVec): PVec;
+    static random2D(): PVec;
+    static random2D(v: PVec): PVec;
+    static random3D(): PVec;
+    static random3D(v: PVec): PVec;
     rotate(theta: number): PVec;
     /**
      * Set the components of the vector.
