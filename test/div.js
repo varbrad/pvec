@@ -1,6 +1,6 @@
 /* global describe, it */
 const assert = require('chai').assert
-const PVec = require('../build/pvec.common.js')
+const PVec = require('../build/pvec.umd.js')
 
 describe('div', function () {
   let p, p2

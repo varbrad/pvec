@@ -88,6 +88,15 @@ class PVec {
     return target
   }
 
+  static angleBetween(a: PVec, b: PVec): number {
+    if (a.magSq() === 0 || b.magSq() === 0) return 0
+    return Math.acos(PVec.dot(a, b) / (a.mag() * b.mag()))
+  }
+
+  array():number[] {
+    return [this.x, this.y, this.z]
+  }
+
   /**
    * Returns a copy of the vector object.
    */

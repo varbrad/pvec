@@ -60,6 +60,8 @@ declare class PVec {
      * @param target A vector to be set.
      */
     static add(a: PVec, b: PVec, target: PVec): PVec;
+    static angleBetween(a: PVec, b: PVec): number;
+    array(): number[];
     /**
      * Returns a copy of the vector object.
      */

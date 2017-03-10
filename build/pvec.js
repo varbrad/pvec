@@ -25,6 +25,14 @@ var PVec = (function () {
         target.add(b);
         return target;
     };
+    PVec.angleBetween = function (a, b) {
+        if (a.magSq() === 0 || b.magSq() === 0)
+            return 0;
+        return Math.acos(PVec.dot(a, b) / (a.mag() * b.mag()));
+    };
+    PVec.prototype.array = function () {
+        return [this.x, this.y, this.z];
+    };
     /**
      * Returns a copy of the vector object.
      */
