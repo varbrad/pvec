@@ -2,17 +2,16 @@
   "name": "pvec",
   "version": "0.1.3",
   "description": "JavaScript port of the Processing PVector class.",
-  "main": "./build/pvec.common.js",
-  "module": "./build/pvec.js",
+  "main": "./build/pvec.umd.js",
   "types": "./build/pvec.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/varbrad/pvec.git"
   },
   "scripts": {
-    "build": "npm run build:ts && npm run build:cjs",
+    "build": "npm run build:ts && npm run build:umd",
     "build:ts": "tsc",
-    "build:cjs": "rollup ./build/pvec.js -o ./build/pvec.common.js --format cjs",
+    "build:umd": "rollup -c",
     "lint": "standard --fix",
     "test": "npm run lint && mocha"
   },
