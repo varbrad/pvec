@@ -29,11 +29,11 @@
   },
   "homepage": "https://github.com/varbrad/pvec#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "rollup": "^0.41.4",
-    "standard": "^9.0.0",
-    "typescript": "^2.2.1"
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "rollup": "^0.45.2",
+    "standard": "^10.0.2",
+    "typescript": "^2.4.2"
   },
   "standard": {
     "ignore": [
