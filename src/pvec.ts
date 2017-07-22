@@ -88,9 +88,11 @@ class PVec {
     return target
   }
 
-  static angleBetween(a: PVec, b: PVec): number {
+  static angleBetween(a: PVec, b: PVec, units: 'radians' | 'degrees' = 'radians'): number {
     if (a.magSq() === 0 || b.magSq() === 0) return 0
-    return Math.acos(PVec.dot(a, b) / (a.mag() * b.mag()))
+    const radians = Math.acos(PVec.dot(a, b) / (a.mag() * b.mag()))
+    if (units === 'radians') return radians
+    if (units === 'degrees') return radians * 180 / Math.PI
   }
 
   array():number[] {
@@ -275,7 +277,7 @@ class PVec {
    * Creates a unit vector from a given angle (in radians).
    * @param angle The angle to generate a vector from (in radians).
    */
-  static fromAngle(angle: number): PVec
+  static fromAngle(angle: number):PVec
   /**
    * Sets an existing vector to a unit vector with a given angle (in radians).
    * @param angle The angle to set the vector to (in radians).

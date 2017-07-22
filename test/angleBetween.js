@@ -28,4 +28,10 @@ describe('angleBetween', function () {
     b = new PVec(2, 4, 5)
     assert.equal(PVec.angleBetween(a, b), 0)
   })
+
+  it('Unit in degrees', function () {
+    a = new PVec(10, 0)
+    b = new PVec(-10, 0)
+    assert.approximately(PVec.angleBetween(a, b, 'degrees'), 180, 0.01)
+  })
 })
